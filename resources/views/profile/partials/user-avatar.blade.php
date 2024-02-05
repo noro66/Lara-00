@@ -7,20 +7,21 @@
         <p class="mt-1 text-sm text-gray-600 dark:text-gray-400">
             {{ __("Update your account's Avatar ") }}
         </p>
+        @if(session('status') === 'Avatar Updated !')
+            <div class="mb-4 font-medium text-sm  text-green-600">
+                {{session('status')}}
+            </div>
+        @endif
     </header>
 
-    <form id="send-verification" method="post" action="{{ route('verification.send') }}">
-        @csrf
-    </form>
-
-    <form method="post" action="{{ route('profile.update') }}" class="mt-6 space-y-6">
+    <form method="post" action="{{ route('profile.avatar') }}" class="mt-6 space-y-6" enctype="multipart/form-data">
         @csrf
         @method('patch')
 
         <div>
-            <x-input-label for="Avatar" :value="__('Avatar')" />
-            <x-text-input id="Avatar" name="Avatar" type="text" class="mt-1 block w-full" :value="old('Avatar', $user->avatar)" required autofocus/>
-            <x-input-error class="mt-2" :messages="$errors->get('Avatar')" />
+            <x-input-label for="Avatar" value="Avatar" />
+            <x-text-input id="Avatar" name="avatar" type="file" class="mt-1 p-1 block w-full" :value="old('Avatar', $user->avatar)"  autofocus/>
+            <x-input-error class="mt-2" :messages="$errors->get('avatar')" />
         </div>
 
         <div class="flex items-center gap-4">
