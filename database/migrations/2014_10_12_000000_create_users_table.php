@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('address');
+            $table->string('phoneNumber')->nullable();
             $table->enum('role', ['admin', 'agent', 'user'])->default('user');
             $table->enum('status', ['online', 'offline'])->default('online');
             $table->string('email')->unique();
