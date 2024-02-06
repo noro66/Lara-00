@@ -17,7 +17,7 @@
     <form method="post" action="{{ route('profile.avatar') }}" class="mt-6 space-y-6" enctype="multipart/form-data">
         @csrf
         @method('patch')
-        <img src="{{url('storage/' . ltrim($user->avatar, 'public/'))}}" alt="">
+        <img src="{{url('storage/' . ltrim($user->avatar, 'public/'))}}" class="rounded-full" alt="">
         <div>
             <x-input-label for="Avatar" value="Avatar" />
             <x-text-input id="Avatar"     capture="user"  accept="image/*" name="avatar" type="file" class="mt-1 p-1 block w-full"  autofocus/>
